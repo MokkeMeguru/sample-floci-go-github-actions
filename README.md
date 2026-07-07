@@ -23,7 +23,7 @@ This keeps local emulator verification closer to production S3 than forcing path
 ```sh
 docker run --rm -p 4566:4566 \
   -e AWS_ACCESS_KEY_ID=test \
-  -e AWS_SECRET_ACCESS_KEY=test \
+  -e AWS_SECRET_ACCESS_KEY=local-test-secret \
   -e AWS_DEFAULT_REGION=ap-northeast-1 \
   -e FLOCI_DEFAULT_REGION=ap-northeast-1 \
   floci/floci:1.5.30-compat
@@ -34,7 +34,7 @@ In another shell:
 ```sh
 FLOCI_INTEGRATION_TEST=1 \
 AWS_ACCESS_KEY_ID=test \
-AWS_SECRET_ACCESS_KEY=test \
+AWS_SECRET_ACCESS_KEY=local-test-secret \
 AWS_DEFAULT_REGION=ap-northeast-1 \
 AWS_ENDPOINT_URL_S3=http://s3.localhost.floci.io:4566 \
 go test ./...

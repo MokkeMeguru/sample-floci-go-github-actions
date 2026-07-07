@@ -16,7 +16,7 @@ jobs:
           - 4566:4566
         env:
           AWS_ACCESS_KEY_ID: test
-          AWS_SECRET_ACCESS_KEY: test
+          AWS_SECRET_ACCESS_KEY: local-test-secret
           AWS_DEFAULT_REGION: ap-northeast-1
           FLOCI_DEFAULT_REGION: ap-northeast-1
           FLOCI_STORAGE_MODE: memory
@@ -33,7 +33,7 @@ jobs:
         env:
           FLOCI_INTEGRATION_TEST: "1"
           AWS_ACCESS_KEY_ID: test
-          AWS_SECRET_ACCESS_KEY: test
+          AWS_SECRET_ACCESS_KEY: local-test-secret
           AWS_DEFAULT_REGION: ap-northeast-1
           AWS_ENDPOINT_URL_S3: http://s3.localhost.floci.io:4566
           S3_BUCKET_PREFIX: sample-floci
