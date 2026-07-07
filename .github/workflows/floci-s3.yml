@@ -1,0 +1,40 @@
+name: floci-s3
+
+on:
+  pull_request:
+  push:
+  workflow_dispatch:
+
+jobs:
+  virtual-hosted-style:
+    runs-on: ubuntu-latest
+
+    services:
+      floci:
+        image: floci/floci:1.5.30-compat
+        ports:
+          - 4566:4566
+        env:
+          AWS_ACCESS_KEY_ID: test
+          AWS_SECRET_ACCESS_KEY: test
+          AWS_DEFAULT_REGION: ap-northeast-1
+          FLOCI_DEFAULT_REGION: ap-northeast-1
+          FLOCI_STORAGE_MODE: memory
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - name: Test Floci S3 with virtual-hosted-style addressing
+        env:
+          FLOCI_INTEGRATION_TEST: "1"
+          AWS_ACCESS_KEY_ID: test
+          AWS_SECRET_ACCESS_KEY: test
+          AWS_DEFAULT_REGION: ap-northeast-1
+          AWS_ENDPOINT_URL_S3: http://s3.localhost.floci.io:4566
+          S3_BUCKET_PREFIX: sample-floci
+        run: go test ./...
