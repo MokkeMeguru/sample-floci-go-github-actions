@@ -19,7 +19,7 @@ type S3Config struct {
 func Load() Config {
 	return Config{
 		AWS: AWSConfig{
-			EndpointURLS3: getenv("AWS_ENDPOINT_URL_S3", "http://s3.localhost.floci.io:4566"),
+			EndpointURLS3: getenv("AWS_ENDPOINT_URL_S3", "http://localhost.floci.io:4566"),
 			Region:        getenv("AWS_DEFAULT_REGION", "ap-northeast-1"),
 		},
 		S3: S3Config{
