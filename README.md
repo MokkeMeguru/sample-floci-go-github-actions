@@ -9,11 +9,11 @@ The sample keeps a small layered structure:
 - `internal/pkg/asset`: S3 object operations
 - `internal/usecase`: bucket/object verification flow
 
-GitHub Actions uses `AWS_ENDPOINT_URL_S3=http://s3.localhost.floci.io:4566`.
+GitHub Actions uses `AWS_ENDPOINT_URL_S3=http://localhost.floci.io:4566`.
 With Go SDK v2 default S3 addressing, requests become virtual-hosted-style URLs such as:
 
 ```text
-http://<bucket>.s3.localhost.floci.io:4566/<key>
+http://<bucket>.localhost.floci.io:4566/<key>
 ```
 
 This keeps local emulator verification closer to production S3 than forcing path-style access.
@@ -36,6 +36,6 @@ FLOCI_INTEGRATION_TEST=1 \
 AWS_ACCESS_KEY_ID=test \
 AWS_SECRET_ACCESS_KEY=local-test-secret \
 AWS_DEFAULT_REGION=ap-northeast-1 \
-AWS_ENDPOINT_URL_S3=http://s3.localhost.floci.io:4566 \
+AWS_ENDPOINT_URL_S3=http://localhost.floci.io:4566 \
 go test ./...
 ```
